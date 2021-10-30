@@ -17,21 +17,6 @@ connectDB();
 
 
 
-// app.get('/register', async (req, res) => {
-//     try{
-//         const users = await User.find();
-//         res.status(200).send({
-//             message: 'it worked',
-//             users
-//         })
-//     } catch(err) {  
-//         res.status(500).send({
-//             message: 'error'
-//         })
-//     }
-// })
-
-
 app.post('/register', async (req, res) => {
     // console.log(req.body);
     if (req.body.collection == 'StockUser'){
@@ -78,6 +63,7 @@ app.post('/register', async (req, res) => {
 
 
 app.post('/login', async (req, res) => {
+    console.log(req.body);
     if (req.body.collection == 'StockUser'){
         try {
             var findUser = await StockUser.find({ 'email' : req.body.email}).exec();
@@ -89,23 +75,27 @@ app.post('/login', async (req, res) => {
         if (findUser.length == 1){
             bcrypt.compare(req.body.password, findUser[0].password, function(err, result){
                 if (err){
-                    res.send({
+                    res.json({
                         message: 'error'
                     })
                 }
+                console.log(result);
                 if (result){
-                    res.send({
+                    res.json({
+                        User_not_found: false,
                         Successful_login: true
                     })
                 } else {
-                    res.send({
+                    res.json({
+                        User_not_found: false,
                         Successful_login: false
                     })
                 }
             });
         } else {
-            res.send({
-                User_not_found: true
+            res.json({
+                User_not_found: true,
+                Successful_login: false
             })
         }
     }
