@@ -153,7 +153,12 @@ app.post('/reset-password', async (req, res) =>{
             } 
             else if (req.body.collection == 'Esther'){
                 await esthersCollection.updateOne({email: req.body.email}, { $set: {password: hashedPassword}});
-            } 
+            } else {
+                res.json({
+                    errorMessage: 'Collection Not Found'
+                })
+                return;
+            }
             res.json({
                 passwordChanged : true,
             })
