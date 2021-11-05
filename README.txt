@@ -4,9 +4,12 @@ This login service uses simple email-password combinations for authentication an
 
 All requests and responses are JSON Format.
 
+Current URL: http://flip3.engr.oregonstate.edu:7070/
+
 
 USER REGISTRATION
     Request Format:
+        POST request at http://flip3.engr.oregonstate.edu:7070/register
         req = {
             collection: Josh,
             email: user@email.com,
@@ -38,6 +41,7 @@ USER REGISTRATION
 
 USER LOGIN
     Request Format:
+        POST request at http://flip3.engr.oregonstate.edu:7070/login
         req = {
             collection: Esther,
             email: user@email.com,
@@ -75,6 +79,7 @@ USER LOGIN
 
 RESET PASSWORD
     Request Format:
+        POST request at http://flip3.engr.oregonstate.edu:7070/reset-password
         *Note* the password specified here is the new desired password for the user, not their old password.
 
         req = {
@@ -103,6 +108,7 @@ RESET PASSWORD
 
 DELETE USER
     Request Format:
+        POST request at http://flip3.engr.oregonstate.edu:7070/delete-user
         req = {
             collection: Patrick,
             email: user@email.com,
